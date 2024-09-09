@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller{
@@ -12,6 +13,20 @@ class AuthController extends Controller{
         $data['meta_title'] = 'Login Page';
         
         return view('auth.login', $data);
+    }
+
+    
+    public function login_post(Request $request){
+        if(Auth::attempt(['email' => $request->email,'password'=> $request->password])){
+            if(Auth::User()->is_role == '1'){
+                return redirect()->intended('admin/dashboard');
+            }else{
+                return redirect('/')->with('error','Admin Not Available');
+            }
+        }else{
+            return redirect()->back()->with('error', 'Please enter the correct credentials');
+        }
+
     }
 
     
@@ -47,5 +62,5 @@ class AuthController extends Controller{
         return view('auth.forgot_password', $data);
     }
 
-}
 
+}
