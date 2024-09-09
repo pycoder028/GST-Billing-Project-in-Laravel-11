@@ -11,6 +11,8 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
+      @include('_message')
+
       <form action="" method="post">
         <div class="input-group mb-3">
           <input type="email" name="email" class="form-control" placeholder="Email">
