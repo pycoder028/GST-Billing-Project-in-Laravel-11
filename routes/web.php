@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PartieTypeController;
 
 Route::get('/', [AuthController::class,'login']);
 Route::post('/login_post', [AuthController::class,'login_post']);
@@ -12,4 +13,10 @@ Route::get('/forgot-password', [AuthController::class,'forgot_password']);
 
 Route::group(['middleware'=> 'admin'], function () {
     Route::get('admin/dashboard', [DashboardController::class,'dashboard']);
+    Route::get('admin/parties_type', [PartieTypeController::class,'parties_type']);
+    Route::get('admin/parties_type/add', [PartieTypeController::class,'parties_type_add']);
+    
 });
+
+
+Route::get('logout', [AuthController::class,'logout']);

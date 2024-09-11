@@ -20,7 +20,7 @@
         </a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
+        <a class="nav-link" href="{{ url('logout') }}">
           <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>
@@ -53,7 +53,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
           <li class="nav-item">
-            <a href="{{ url('admin/dashboard') }}" class="nav-link active">
+            <a href="{{ url('admin/dashboard') }}" class="nav-link @if(Request::segment(2) == 'dashboard') active @endif">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -62,10 +62,10 @@
           </li>
 
           <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
+            <a href="{{ url('admin/parties_type') }}" class="nav-link @if(Request::segment(2) == 'parties_type') active @endif">
+              <i class="nav-icon far fa-user"></i>
               <p>
-                Gallery
+                Parties Type
               </p>
             </a>
           </li>
